@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- stats_v1alpha1_currenttemperature.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples

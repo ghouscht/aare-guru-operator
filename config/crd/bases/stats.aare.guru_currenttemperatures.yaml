@@ -1,0 +1,108 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: currenttemperatures.stats.aare.guru
+spec:
+  group: stats.aare.guru
+  names:
+    kind: CurrentTemperature
+    listKind: CurrentTemperatureList
+    plural: currenttemperatures
+    shortNames:
+    - cta
+    singular: currenttemperature
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.location
+      name: LOCATION
+      type: string
+    - jsonPath: .status.temperature
+      name: TEMPERATURE
+      type: string
+    - jsonPath: .status.flow
+      name: Flow
+      type: string
+    - jsonPath: .status.text
+      name: TEXT
+      type: string
+    - jsonPath: .status.time
+      name: UPDATED
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: CurrentTemperature is the Schema for the currenttemperatures
+          API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: CurrentTemperatureSpec defines the desired state of CurrentTemperature.
+            properties:
+              city:
+                description: City is the name of the city for which the current temperature
+                  is to be fetched.
+                type: string
+              flowUnit:
+                default: m3/s
+                description: FlowUnit is the unit of measurement for the flow rate.
+                enum:
+                - m3/s
+                - Beer/s
+                type: string
+              updateInterval:
+                description: UpdateInterval defines how often the current temperature
+                  should be updated.
+                type: string
+            required:
+            - city
+            - updateInterval
+            type: object
+          status:
+            description: CurrentTemperatureStatus defines the observed state of CurrentTemperature.
+            properties:
+              flow:
+                type: string
+              location:
+                description: |-
+                  INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
+                  Important: Run "make" to regenerate code after modifying this file
+                type: string
+              temperature:
+                type: string
+              text:
+                type: string
+              time:
+                format: date-time
+                type: string
+            required:
+            - flow
+            - location
+            - temperature
+            - text
+            - time
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

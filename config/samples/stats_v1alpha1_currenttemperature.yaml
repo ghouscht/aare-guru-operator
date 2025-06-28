@@ -1,0 +1,22 @@
+apiVersion: stats.aare.guru/v1alpha1
+kind: CurrentTemperature
+metadata:
+  labels:
+    app.kubernetes.io/name: aare-guru
+    app.kubernetes.io/managed-by: kustomize
+  name: example-bern
+spec:
+  city: Bern
+  updateInterval: 1h
+---
+apiVersion: stats.aare.guru/v1alpha1
+kind: CurrentTemperature
+metadata:
+  labels:
+    app.kubernetes.io/name: aare-guru
+    app.kubernetes.io/managed-by: kustomize
+  name: example-thun
+spec:
+  city: Thun
+  updateInterval: 1h
+  flowUnit: Beer/s

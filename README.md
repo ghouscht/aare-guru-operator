@@ -1,8 +1,18 @@
 # aare-guru
-// TODO(user): Add simple overview of use/purpose
+A simple k8s controller which fetches some data about the river Aare from the
+awesome [aare.guru](https://aare.guru/) API/Website (powered by [BAFU Hydrologische Daten und Vorhersagen](https://www.hydrodaten.admin.ch/)) and exposes the data in your Kubernetes cluster as a custom resource.
+
+Example:
+```
+$ kubectl get currenttemperatures.stats.aare.guru
+NAME           LOCATION        TEMPERATURE   FLOW            TEXT                                       UPDATED
+example-bern   Bern, Schönau   22.60°C       199m3/s         Du wosch nid id Hitz? Hitz chunt zu dir!   2025-07-01T17:00:00Z
+example-thun   Thun            21.90°C       392000 Beer/s   Plütterwarm                                2025-07-01T17:00:00Z
+```
 
 ## Description
-// TODO(user): An in-depth paragraph about your project and overview of use
+This controller was built for a talk and only serves as a "demo project". The
+resources for the talk can be found [here](https://github.com/ghouscht/k8s-operator-intro).
 
 ## Getting Started
 

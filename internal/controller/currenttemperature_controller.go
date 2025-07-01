@@ -52,7 +52,7 @@ func (r *CurrentTemperatureReconciler) Reconcile(ctx context.Context, req ctrl.R
 		r.Recorder.Eventf(&currentTemperature, "Warning", "ApiErr", "Aare Guru API request failed: %v", err)
 		return ctrl.Result{}, err
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() //nolint:errcheck
 
 	rawData, err := io.ReadAll(resp.Body)
 	if err != nil {
